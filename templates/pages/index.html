@@ -2,7 +2,7 @@
 {% load static %} {% block content %}
 
 
-<div class="container">
+<div class="super_container">
 
 
 	
@@ -16,7 +16,7 @@
 				
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
 					<div class="home_slider_content">
 						<div class="container">
 							<div class="row">
@@ -139,7 +139,7 @@
 				<!-- Features Item -->
 				<div class="col-lg-3 feature_col">
 					<div class="feature text-center trans_400">
-						<div class="feature_icon"><img src="images/icon_1.png" alt=""></div>
+						<div class="feature_icon"><img src="{% static 'images/icon_1.png' %}" alt=""></div>
 						<h3 class="feature_title">The Experts</h3>
 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
 					</div>
@@ -148,7 +148,7 @@
 				<!-- Features Item -->
 				<div class="col-lg-3 feature_col">
 					<div class="feature text-center trans_400">
-						<div class="feature_icon"><img src="images/icon_2.png" alt=""></div>
+						<div class="feature_icon"><img src="{% static 'images/icon_2.png' %}" alt=""></div>
 						<h3 class="feature_title">Book & Library</h3>
 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
 					</div>
@@ -157,7 +157,7 @@
 				<!-- Features Item -->
 				<div class="col-lg-3 feature_col">
 					<div class="feature text-center trans_400">
-						<div class="feature_icon"><img src="images/icon_3.png" alt=""></div>
+						<div class="feature_icon"><img src="{% static 'images/icon_3.png' %}" alt=""></div>
 						<h3 class="feature_title">Best Courses</h3>
 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
 					</div>
@@ -166,7 +166,7 @@
 				<!-- Features Item -->
 				<div class="col-lg-3 feature_col">
 					<div class="feature text-center trans_400">
-						<div class="feature_icon"><img src="images/icon_4.png" alt=""></div>
+						<div class="feature_icon"><img src="{% static 'images/icon_4.png' %}" alt=""></div>
 						<h3 class="feature_title">Award & Reward</h3>
 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
 					</div>
@@ -179,7 +179,7 @@
 	<!-- Popular Courses -->
 
 	<div class="courses">
-		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="images/courses_background.jpg" data-speed="0.8"></div>
+		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/courses_background.jpg' %}" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
