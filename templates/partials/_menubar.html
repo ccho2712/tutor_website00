@@ -12,12 +12,13 @@
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.html">Home</a></li>
-				<li class="menu_mm"><a href="#">About</a></li>
-				<li class="menu_mm"><a href="#">Courses</a></li>
-				<li class="menu_mm"><a href="#">Blog</a></li>
-				<li class="menu_mm"><a href="#">Page</a></li>
-				<li class="menu_mm"><a href="contact.html">Contact</a></li>
+				<li class="menu_mm"><a href="{% url 'pages:index' %}">Home</a></li>
+				<li class="menu_mm"><a href="{% url 'pages:about' %}">About</a></li>
+				<li class="menu_mm"><a href="{% url 'courses:courses' %}">Courses</a></li>
+				<li class="menu_mm"><a href="{% url 'tutors:tutors' %}">Tutors</a></li>
+				<li class="menu_mm"><a href="{% url 'schools:schools' %}">Schoools</a></li>
+				<li class="menu_mm"><a href="#">Contact</a></li>
 			</ul>
 		</nav>
 	</div>
+
