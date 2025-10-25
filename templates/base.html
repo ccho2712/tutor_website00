@@ -14,12 +14,14 @@
             {% endblock link %}
       </head>
       <body>
-            {% include 'partials/_topbar.html' %}
-            {% include 'partials/_menubar.html' %}
-            {% block content %}
-            {% endblock content %}
-            {% include 'partials/_subcribebar.html' %}
-            {% include 'partials/_footer.html' %}
+            <div class="super_container">
+                  {% include 'partials/_topbar.html' %}
+                  {% include 'partials/_menubar.html' %}
+                  {% block content %}
+                  {% endblock content %}
+                  {% include 'partials/_subcribebar.html' %}
+                  {% include 'partials/_footer.html' %}
+            </div>
             {% block script %}
             {% endblock script %}
       </body>

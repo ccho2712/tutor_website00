@@ -1,5 +1,9 @@
 from django.db import models
-from tutors.models import Tutor  # adjust path if needed
+from tutors.models import Tutor
+from schools.models import School
+# adjust path if needed
+from .choices import district_choices, subject_choices
+
 
 class Course(models.Model):
     CLASS_TYPE_CHOICES = [
@@ -13,9 +17,29 @@ class Course(models.Model):
     )
     tutor = models.ForeignKey(
         Tutor,
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         related_name='courses',
         help_text='Tutor teaching this course'
+    )
+    school = models.ForeignKey(
+        School,
+        on_delete=models.DO_NOTHING,
+        related_name='courses',
+        help_text='School offering the course',
+        blank=True,
+        null=True,
+    )
+    district = models.CharField(
+        max_length=50,
+        choices=district_choices,
+        default='Sha Tin',
+        help_text='District where the course is offered'
+    )
+    subject = models.CharField(
+        max_length=50,
+        choices=subject_choices,
+        default='Chinese',
+        help_text='Subject matter of the course'
     )
     students_enrolled = models.PositiveIntegerField(
         default=0,
@@ -36,16 +60,17 @@ class Course(models.Model):
         decimal_places=2,
         help_text='Course price in HKD'
     )
-    duration_weeks = models.PositiveIntegerField(
-        default=1,
-        help_text='Course duration in weeks'
+    duration = models.PositiveIntegerField(
+        default=1.5,
+        help_text='Course duration in hours'
     )
     total_classes = models.PositiveIntegerField(
-        default=1,
+        default=4,
         help_text='Total number of classes in the course'
     )
     class_time = models.CharField(
         max_length=50,
+        default='Wed 4 p.m.',
         help_text='Scheduled time for the class (e.g., Wed 4 p.m.)'
     )
     class_type = models.CharField(
@@ -59,6 +84,11 @@ class Course(models.Model):
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+    description = models.TextField(
+        help_text='Detailed description of the course',
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return self.title

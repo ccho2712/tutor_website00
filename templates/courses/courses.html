@@ -1,151 +1,216 @@
-{% extends 'base.html' %} {% load static %}
-{% block title %} Courses {% endblock title %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    | Courses
+{% endblock title %}
+{% block link %}
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link href="{% static 'plugins/colorbox/colorbox.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/courses.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/courses_responsive.css' %}">
+{% endblock link %}
 {% block content %}
-<div class="super_container" style="padding-top:120px;">
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'pages:index' %}">Home</a>
+                                </li>
+                                <li>Courses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Courses -->
-
-	<div class="courses">
-		<div class="container">
-			<div class="row">
-
-				<!-- Courses Main Content -->
-				<div class="col-lg-8">
-					<div class="courses_search_container">
-						<form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-							<input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
-							<select id="courses_search_select" class="courses_search_select courses_search_input">
-								<option>All Categories</option>
-								<option>Category</option>
-								<option>Category</option>
-								<option>Category</option>
-							</select>
-							<button action="submit" class="courses_search_button ml-auto">search now</button>
-						</form>
-					</div>
-					<div class="courses_container">
-						<div class="row courses_row">
-							
-							<!-- Course -->
-							{% if courses %}
-							{% for course in courses %}
-							<div class="col-lg-6 course_col mt-3">
-								<div class="course">
-									<div class="course_image"><img src="{{ course.photo_main.url }}" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="{% url 'courses:course' course.id %}">{{ course.title }}</a></h3>
-										<div class="course_teacher">{{ course.tutor.name }}</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>{{ course.enrollment_display }}</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>{{ course.rating }}</span>
-											</div>
-											<div class="course_price ml-auto">${{ course.price}}</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-							{% else %}
-							<p>No courses available.</p>
-							{% endif %}
-
-
-
-						</div>
-						<div class="row pagination_row">
-							<div class="col">
-								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
-									<ul class="pagination_list">
-										<li class="active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-									</ul>
-									<div class="courses_show_container ml-auto clearfix">
-										<div class="courses_show_text">Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:</div>
-										<div class="courses_show_content">
-											<span>Show: </span>
-											<select id="courses_show_select" class="courses_show_select">
-												<option>06</option>
-												<option>12</option>
-												<option>24</option>
-												<option>36</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Courses Sidebar -->
-				<div class="col-lg-4">
-					<div class="sidebar">
-
-
-						<!-- Latest Course(Tutor stars) -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Tutor stars</div>
-							<div class="sidebar_latest">
-
-								<!-- Tutor star -->
-								{% if mvp_tutors %}
-								{% for tutor in mvp_tutors %}
-								<div class="card">
-              						<img
-                						class="card-img-top"
-                						src={{ tutor.photo.url }}
-                						alt="Tutor star"
-              						/>
-              						<div class="card-body">
-                						<h5 class="card-title">5** Tutor</h5>
-                						<h6 class="text-secondary">{{tutor.name}}</h6>
-                						<p class="card-text">
-                						{{tutor.description}}
-                						</p>
-              						</div>
-            					</div>
-								{% endfor %}
-								{% endif %}
-
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_2.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-										<div class="latest_price">$170</div>
-									</div>
-								</div>
-
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_3.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-										<div class="latest_price">$220</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endblock  %}
+    <div class="courses">
+        <div class="container">
+            <div class="row">
+                <!-- Courses Main Content -->
+                <div class="col-lg-8">
+                    <div class="courses_search_container">
+                        <form action="#"
+                              id="courses_search_form"
+                              class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+                            <input type="search"
+                                   class="courses_search_input"
+                                   placeholder="Search Courses"
+                                   required="required">
+                            <select id="courses_search_select"
+                                    class="courses_search_select courses_search_input">
+                                <option>All Categories</option>
+                                <option>Category</option>
+                                <option>Category</option>
+                                <option>Category</option>
+                            </select>
+                            <button action="submit" class="courses_search_button ml-auto">search now</button>
+                        </form>
+                    </div>
+                    <div class="courses_container">
+                        <div class="row courses_row">
+                            <!-- Course -->
+                            {% if courses %}
+                                {% for course in courses %}
+                                    <div class="col-lg-6 course_col mt-3">
+                                        <div class="course">
+                                            <div class="course_image">
+                                                <img src="{{ course.photo_main.url }}" alt="">
+                                            </div>
+                                            <div class="course_body">
+                                                <h3 class="course_title">
+                                                    <a href="{% url 'courses:course' course.id %}">{{ course.title }}</a>
+                                                </h3>
+                                                <div class="course_teacher">{{ course.tutor.name }}</div>
+                                                <div class="course_text">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                                </div>
+                                            </div>
+                                            <div class="course_footer">
+                                                <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="course_info">
+                                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                        <span>{{ course.enrollment_display }}</span>
+                                                    </div>
+                                                    <div class="course_info">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span>{{ course.rating }}</span>
+                                                    </div>
+                                                    <div class="course_price ml-auto">${{ course.price }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>No courses available.</p>
+                            {% endif %}
+                        </div>
+                        <div class="row pagination_row">
+                            <div class="col">
+                                <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+                                    <ul class="pagination_list">
+                                        <li class="active">
+                                            <a href="#">1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="courses_show_container ml-auto clearfix">
+                                        <div class="courses_show_text">
+                                            Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:
+                                        </div>
+                                        <div class="courses_show_content">
+                                            <span>Show:</span>
+                                            <select id="courses_show_select" class="courses_show_select">
+                                                <option>06</option>
+                                                <option>12</option>
+                                                <option>24</option>
+                                                <option>36</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Courses Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Latest Course(Tutor stars) -->
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">Tutor stars</div>
+                            <div class="sidebar_latest">
+                                <!-- Tutor star -->
+                                {% if mvp_tutors %}
+                                    {% for tutor in mvp_tutors %}
+                                        <div class="card">
+                                            <img class="card-img-top" src={{ tutor.photo.url }} alt="Tutor star" />
+                                            <div class="card-body">
+                                                <h5 class="card-title">5** Tutor</h5>
+                                                <h6 class="text-secondary">{{ tutor.name }}</h6>
+                                                <p class="card-text">{{ tutor.description }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <!-- Latest Course -->
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image">
+                                        <div>
+                                            <img src="images/latest_2.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="latest_content">
+                                        <div class="latest_title">
+                                            <a href="course.html">Photography for Beginners Masterclass</a>
+                                        </div>
+                                        <div class="latest_price">$170</div>
+                                    </div>
+                                </div>
+                                <!-- Latest Course -->
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image">
+                                        <div>
+                                            <img src="images/latest_3.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="latest_content">
+                                        <div class="latest_title">
+                                            <a href="course.html">The Secrets of Body Language</a>
+                                        </div>
+                                        <div class="latest_price">$220</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+    <script src="{% static 'js/courses.js' %}"></script>
+{% endblock script %}

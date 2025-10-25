@@ -1,21 +1,73 @@
-{% extends 'base.html' %} {% load static %}
-{% block title %} Tutors {% endblock title %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  | Tutors
+{% endblock title %}
+{% block link %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+  <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+        rel="stylesheet"
+        type="text/css">
+  <link href="{% static 'plugins/colorbox/colorbox.css' %}"
+        rel="stylesheet"
+        type="text/css">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'styles/courses.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'styles/courses_responsive.css' %}">
+{% endblock link %}
 {% block content %}
-
-<body>
-  <div class="container" style="padding-top:140px;">
+  <!-- Home -->
+  <div class="home">
+    <div class="breadcrumbs_container">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="{% url 'pages:index' %}">Home</a>
+                </li>
+                <li>Tutors</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Tutors-->
+  <div class="container">
     <div class="text-success display-4">Our Tutors</div>
     <div class="row">
       {% for tutor in tutors %}
         <div class="col-md-4 mb-4">
           <div class="card h-100 text-center">
-            <img src="{{ tutor.photo.url }}" alt="{{ tutor.name }}" class="card-img-top" style="width: 100%; height: 200px; object-fit: cover;">
+            <img src="{{ tutor.photo.url }}"
+                 alt="{{ tutor.name }}"
+                 class="card-img-top"
+                 style="width: 100%;
+                        height: 200px;
+                        object-fit: cover">
             <div class="card-body">
               <h5 class="card-title">{{ tutor.name }}</h5>
-              <p class="card-text"><strong>Subject:</strong> {{ tutor.course_subject }}</p>
-              {% if tutor.is_mvp %}
-                <p class="badge bg-warning text-dark">🌟 MVP Tutor</p>
-              {% endif %}
+              <p class="card-text">
+                <strong>Subject:</strong> {{ tutor.course_subject }}
+              </p>
+              {% if tutor.is_mvp %}<p class="badge bg-warning text-dark">🌟 MVP Tutor</p>{% endif %}
               <a href="{% url 'tutors:tutor' tutor.id %}" class="btn btn-primary mt-2">View Profile</a>
             </div>
           </div>
@@ -25,5 +77,14 @@
       {% endfor %}
     </div>
   </div>
-</body>
 {% endblock content %}
+{% block script %}
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+  <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+  <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+  <script src="{% static 'plugins/easing/easing.js' %}"></script>
+  <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+  <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+  <script src="{% static 'js/courses.js' %}"></script>
+{% endblock script %}

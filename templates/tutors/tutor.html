@@ -1,27 +1,93 @@
 {% extends 'base.html' %}
-{% block title %} Tutors - {{ tutor.name }} {% endblock title %}
+{% load static %}
+{% block title %}
+  | Tutors - {{ tutor.name }}
+{% endblock title %}
+{% block link %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+  <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+        rel="stylesheet"
+        type="text/css">
+  <link href="{% static 'plugins/colorbox/colorbox.css' %}"
+        rel="stylesheet"
+        type="text/css">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'styles/course.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'styles/course_responsive.css' %}">
+{% endblock link %}
 {% block content %}
-<body>
-<div class="container" style="padding-top:140px;">
-  <div class="container text-center">
-    <div class="tutor-profile">
-      <img src="{{ tutor.photo.url }}" alt="{{ tutor.name }}" class="tutor-photo-large" style="width: 300px; height: 300px;">
-      <h1>{{ tutor.name }}</h1>
-      {% if tutor.is_mvp %}
-        <p class="badge">🌟 MVP Tutor</p>
-      {% endif %}
-      <p><strong>Subject:</strong> {{ tutor.course_subject }}</p>
-      <p><strong>Phone:</strong> {{ tutor.phone }}</p>
-      <p><strong>Email:</strong> <a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a></p>
-      
-      <div class="description">
-        <h2>About {{ tutor.name }}</h2>
-        <p>{{ tutor.description }}</p>
+  <!-- Home (breadcrumbs)-->
+  <div class="home">
+    <div class="breadcrumbs_container">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="{% url 'pages:index' %}">Home</a>
+                </li>
+                <li>
+                  <a href="{% url 'courses:courses' %}">Courses</a>
+                </li>
+                <li>{{ tutor.name }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <a href="{% url 'tutors:tutors' %}" class="btn">← Back to All Tutors</a>
     </div>
   </div>
-</div>
-</body>
-
+  <!--Tutor Profile-->
+  <div class="container">
+    <div class="container text-center">
+      <div class="tutor-profile">
+        <img src="{{ tutor.photo.url }}"
+             alt="{{ tutor.name }}"
+             class="tutor-photo-large"
+             style="width: 300px;
+                    height: 300px">
+        <h1>{{ tutor.name }}</h1>
+        {% if tutor.is_mvp %}<p class="badge">🌟 MVP Tutor</p>{% endif %}
+        <p>
+          <strong>Subject:</strong> {{ tutor.course_subject }}
+        </p>
+        <p>
+          <strong>Phone:</strong> {{ tutor.phone }}
+        </p>
+        <p>
+          <strong>Email:</strong> <a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a>
+        </p>
+        <div class="description">
+          <h2>About {{ tutor.name }}</h2>
+          <p>{{ tutor.description }}</p>
+        </div>
+        <a href="{% url 'tutors:tutors' %}" class="btn btn-light mb-4">← Back to All Tutors</a>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
+{% block script %}
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+  <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+  <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+  <script src="{% static 'plugins/easing/easing.js' %}"></script>
+  <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+  <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+  <script src="{% static 'js/course.js' %}"></script>
+{% endblock script %}
