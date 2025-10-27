@@ -50,3 +50,15 @@ def login(request):
             return redirect('accounts:login')
     else:
         return render(request, 'accounts/login.html')
+
+
+def dashboard(request):
+    # user_contacts = Contact.objects.filter(user_id=request.user.id).order_by('-contact_date')
+    # context = {'contacts': user_contacts}
+    return render(request, 'accounts/dashboard.html')
+
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+    return redirect('pages:index')

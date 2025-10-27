@@ -22,11 +22,35 @@
                                     </li>
                                 </ul>
                                 <div class="ml-auto">
-                                    <div class="btn-group" role="group" aria-label="Login and Register">
-                                        <a href="{% url 'accounts:login' %}"
-                                           class="btn text-white bg-primary btn-outline-primary">Login</a>
-                                        <a href="{% url 'accounts:register' %}"
-                                           class="btn text-white bg-success btn-outline-success">Register</a>
+                                    <div class="d-flex justify-content-between" style="gap: 10px;">
+                                        {% if user.is_authenticated %}
+                                            <div class="btn-group" role="group" aria-label="Dashboard and Logout">
+                                                <a href="{% url 'accounts:dashboard' %}" class="btn btn-primary">
+                                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </div>
+                                            <div class="btn-group" role="group" aria-label="Logout">
+                                                <form action="{% url 'accounts:logout' %}"
+                                                      method="POST"
+                                                      style="display:inline">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        {% else %}
+                                            <div class="btn-group" role="group" aria-label="Register">
+                                                <a href="{% url 'accounts:register' %}" class="btn btn-success">
+                                                    <i class="fas fa-user-plus"></i> Register
+                                                </a>
+                                            </div>
+                                            <div class="btn-group" role="group" aria-label="Login">
+                                                <a href="{% url 'accounts:login' %}" class="btn btn-primary">
+                                                    <i class="fas fa-sign-in-alt"></i> Login
+                                                </a>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -34,75 +58,74 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Header Content -->
-        <div class="header_container">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
-                            <div class="logo_container">
-                                <a href="#">
-                                    <div class="logo_text">
-                                        Tutor<span>5**</span>
+            <!-- Header Content -->
+            <div class="header_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="logo_container">
+                                    <a href="#">
+                                        <div class="logo_text">
+                                            Tutor<span>5**</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <nav class="main_nav_contaner ml-auto">
+                                    <ul class="main_nav">
+                                        <li {% if request.path == '/' %}class="active"{% endif %}>
+                                            <a href="{% url 'pages:index' %}">Home</a>
+                                        </li>
+                                        <li {% if request.path == '/about/' %}class="active"{% endif %}>
+                                            <a href="{% url 'pages:about' %}">About</a>
+                                        </li>
+                                        <li {% if request.path == '/courses/' %}class="active"{% endif %}>
+                                            <a href="{% url 'courses:courses' %}">Courses</a>
+                                        </li>
+                                        <li {% if request.path == '/tutors/' %}class="active"{% endif %}>
+                                            <a href="{% url 'tutors:tutors' %}">Tutors</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'schools:schools' %}">Schools</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pages:contact' %}">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                    <div class="search_button">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
                                     </div>
-                                </a>
+                                    <!-- Hamburger -->
+                                    <div class="shopping_cart">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="hamburger menu_mm">
+                                        <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+                                    </div>
+                                </nav>
                             </div>
-                            <nav class="main_nav_contaner ml-auto">
-                                <ul class="main_nav">
-                                    <li {% if request.path == '/' %}class="active"{% endif %}>
-                                        <a href="{% url 'pages:index' %}">Home</a>
-                                    </li>
-                                    <li {% if request.path == '/about/' %}class="active"{% endif %}>
-                                        <a href="{% url 'pages:about' %}">About</a>
-                                    </li>
-                                    <li {% if request.path == '/courses/' %}class="active"{% endif %}>
-                                        <a href="{% url 'courses:courses' %}">Courses</a>
-                                    </li>
-                                    <li {% if request.path == '/tutors/' %}class="active"{% endif %}>
-                                        <a href="{% url 'tutors:tutors' %}">Tutors</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'schools:schools' %}">Schools</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'pages:contact' %}">Contact Us</a>
-                                    </li>
-                                </ul>
-                                <div class="search_button">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </div>
-                                <!-- Hamburger -->
-                                <div class="shopping_cart">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                </div>
-                                <div class="hamburger menu_mm">
-                                    <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-                                </div>
-                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Header Search Panel -->
-        <div class="header_search_container">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-                            <form action="#" class="header_search_form">
-                                <input type="search"
-                                       class="search_input"
-                                       placeholder="Search"
-                                       required="required">
-                                <button class="header_search_button d-flex flex-column align-items-center justify-content-center">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </form>
+            <!-- Header Search Panel -->
+            <div class="header_search_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+                                <form action="#" class="header_search_form">
+                                    <input type="search"
+                                           class="search_input"
+                                           placeholder="Search"
+                                           required="required">
+                                    <button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
