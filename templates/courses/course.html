@@ -83,9 +83,12 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="btn-primary btn-lg btn-block"
+                                data-toggle="modal"
+                                data-target="#inquiryModal">Make An Inquiry</button>
                         <!-- Course Image -->
                         <div class="course_image">
-                            <img src="{{ pass }}" alt="">
+                            <img src="{{ course.photo_main.url }}" alt="">
                         </div>
                         <!-- Course Tabs -->
                         <div class="course_tabs_container">
@@ -630,6 +633,63 @@
             </div>
         </div>
     </div>
+    <!-- Inquiry Modal -->
+    <div class="modal fade" id="inquiryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'contacts:contact' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="course_id" value="{{ course.id }}" />
+                        <input type="hidden" name="tutor_email" value="{{ course.tutor.email }}" />
+                        {% if user.is_authenticated %}
+                            <input type="hidden" name="user_id" value="{{ user.id }}" />
+                        {% else %}
+                            <input type="hidden" name="user_id" value="0" />
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="clinic" class="col-form-label">School:</label>
+                            <input type="text"
+                                   name="course"
+                                   class="form-control"
+                                   value="{{ course.title }}"
+                                   readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   {% if user.is_authenticated %}value="{{ user.first_name }} {{ user.last_name }}" readonly{% endif %} />
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   {% if user.is_authenticated %}value="{{ user.email }}" readonly{% endif %} />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-form-label">Phone:</label>
+                            <input type="text" name="phone" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="col-form-label">Message:</label>
+                            <textarea name="message" class="form-control"></textarea>
+                        </div>
+                        <hr />
+                        <input type="submit" value="Send" class="btn btn-block btn-secondary" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 {% block script %}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
@@ -640,4 +700,6 @@
     <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
     <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
     <script src="{% static 'js/course.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
 {% endblock script %}
