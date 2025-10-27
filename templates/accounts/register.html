@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block link %}
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link href="{% static 'plugins/video-js/video-js.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/blog.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/blog_responsive.css' %}">
+{% endblock link %}
+{% block content %}
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'pages:index' %}">Home</a>
+                                </li>
+                                <li>Register</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register -->
+    <section id="register" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h4>
+                                <i class="fas fa-user-plus"></i> Register
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            {% comment %} index.html {% endcomment %}
+                            <form action="{% url "accounts:register" %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" name="first_name" class="form-control" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="form-control" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" class="form-control" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2">Confirm Password</label>
+                                    <input type="password" name="password2" class="form-control" required />
+                                </div>
+                                <input type="submit" value="Register" class="btn btn-secondary btn-block" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/masonry/masonry.js' %}"></script>
+    <script src="{% static 'plugins/video-js/video.min.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/blog.js' %}"></script>
+{% endblock script %}

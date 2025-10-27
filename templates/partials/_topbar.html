@@ -23,8 +23,10 @@
                                 </ul>
                                 <div class="ml-auto">
                                     <div class="btn-group" role="group" aria-label="Login and Register">
-                                        <a href="#" class="btn text-white bg-primary btn-outline-primary">Login</a>
-                                        <a href="#" class="btn text-white bg-success btn-outline-success">Register</a>
+                                        <a href="{% url 'accounts:login' %}"
+                                           class="btn text-white bg-primary btn-outline-primary">Login</a>
+                                        <a href="{% url 'accounts:register' %}"
+                                           class="btn text-white bg-success btn-outline-success">Register</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +66,7 @@
                                         <a href="{% url 'schools:schools' %}">Schools</a>
                                     </li>
                                     <li>
-                                        <a href="contact.html">Contact</a>
+                                        <a href="{% url 'pages:contact' %}">Contact Us</a>
                                     </li>
                                 </ul>
                                 <div class="search_button">
