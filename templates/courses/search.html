@@ -24,27 +24,8 @@
             href="{% static 'styles/responsive.css' %}">
 {% endblock link %}
 {% block content %}
-      <!-- Home (breadcrumbs)-->
+      <!-- Home -->
       <div class="home">
-            <div class="breadcrumbs_container">
-                  <div class="container">
-                        <div class="row">
-                              <div class="col">
-                                    <div class="breadcrumbs">
-                                          <ul>
-                                                <li>
-                                                      <a href="{% url 'pages:index' %}">Home</a>
-                                                </li>
-                                                <li>
-                                                      <a href="{% url 'courses:courses' %}">Courses</a>
-                                                </li>
-                                                <li>Search Results</li>
-                                          </ul>
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
-            </div>
             <!-- Search bar -->
             <div class="home_slider_container">
                   <!-- Home Slider -->
@@ -172,48 +153,72 @@
             <div class="home_slider_nav home_slider_next">
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
             </div>
+            <!--Breadcrumbs-->
+            <div class="breadcrumbs_container">
+                  <div class="container">
+                        <div class="row">
+                              <div class="col">
+                                    <div class="breadcrumbs">
+                                          <ul>
+                                                <li>
+                                                      <a href="{% url 'pages:index' %}">Home</a>
+                                                </li>
+                                                <li>
+                                                      <a href="{% url 'courses:courses' %}">Courses</a>
+                                                </li>
+                                                <li>Search Results</li>
+                                          </ul>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
       </div>
       <!--searched courses-->
-      {% comment %} fix pagination {% endcomment %}
-      {% comment %} <div class="row">
-        <div class="col-md-12">
-        {% if courses.has_other_pages %}
-        <ul class="pagination">
-            {% if courses.has_previous %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ courses.previous_page_number }}&keywords={{ values.keywords }}&district={{ values.district }}&rooms={{ values.rooms }}&room_type={{ values.room_type }}">&laquo;</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#">&laquo;</a>
-            </li>
-            {% endif %}
-            {% for i in courses.paginator.page_range %}
-            {% if courses.number == i %}
-            <li class="page-item active">
-            <a class="page-link">{{ i }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ i }}&keywords={{ values.keywords }}&district={{ values.district }}&rooms={{ values.rooms }}&room_type={{ values.room_type }}">{{ i }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-
-            {% if courses.has_next %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ courses.next_page_number }}&keywords={{ values.keywords }}&district={{ values.district }}&rooms={{ values.rooms }}&room_type={{ values.room_type }}">&raquo;</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#">&raquo;</a>
-            </li>
-            {% endif %}
-        </ul>
-        {% endif %}
-        </div>
-      </div> {% endcomment %}
-</div>
+      <section id="home_search_form_1" class="py-4">
+            <div class="container">
+                  <div class="row">
+                        <!-- Listing 1 -->
+                        {% if courses %}
+                              {% for course in courses %}
+                                    <div class="col-lg-6 course_col mt-3">
+                                          <div class="course">
+                                                <div class="course_image">
+                                                      <img src="{{ course.photo_main.url }}" alt="">
+                                                </div>
+                                                <div class="course_body">
+                                                      <h3 class="course_title">
+                                                            <a href="{% url 'courses:course' course.id %}">{{ course.title }}</a>
+                                                      </h3>
+                                                      <div class="course_teacher">{{ course.tutor.name }}</div>
+                                                      <div class="course_text">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                                      </div>
+                                                </div>
+                                                <div class="course_footer">
+                                                      <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                            <div class="course_info">
+                                                                  <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                                  <span>{{ course.enrollment_display }}</span>
+                                                            </div>
+                                                            <div class="course_info">
+                                                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                                                  <span>{{ course.rating }}</span>
+                                                            </div>
+                                                            <div class="course_price ml-auto">${{ course.price }}</div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                              {% endfor %}
+                        {% else %}
+                              <div class="col-md-12">
+                                    <p>No Course Available</p>
+                              </div>
+                        {% endif %}
+                  </div>
+            </div>
+      </section>
 {% endblock content %}
 {% block script %}
       <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>

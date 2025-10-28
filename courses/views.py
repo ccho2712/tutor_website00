@@ -30,7 +30,7 @@ def course(request, course_id):
 
 
 def search(request):
-    queryset_list = Course.objects.order_by('-list_date')
+    queryset_list = Course.objects.order_by('-created_at')
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
@@ -55,4 +55,4 @@ def search(request):
         "subject_choices": subject_choices,
         "values": request.GET,
     }
-    return render(request, 'listings/search.html', context)
+    return render(request, 'courses/search.html', context)

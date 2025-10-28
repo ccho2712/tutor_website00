@@ -6,4 +6,5 @@ app_name = 'courses'
 urlpatterns = [
     path('', views.courses, name='courses'),
     path('<int:course_id>/', views.course, name='course'),
+    path('search/', views.search, name='search'),
 ]
