@@ -1,9 +1,14 @@
 from django.db import models
 from datetime import datetime
 # Create your models here.
+
+
 class Tutor(models.Model):
     name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     description = models.TextField(blank=True)
     phone = models.CharField(max_length=20, default='00000000')
     email = models.EmailField(max_length=50, unique=False, blank=True)
