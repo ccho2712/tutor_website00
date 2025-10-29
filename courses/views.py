@@ -33,15 +33,18 @@ def search(request):
     queryset_list = Course.objects.order_by('-created_at')
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
+        print(keywords)
         if keywords:
             queryset_list = queryset_list.filter(Q(school__title__icontains=keywords) | Q(
                 title__icontains=keywords) | Q(tutor__name__icontains=keywords))
     if 'district' in request.GET:
         district = request.GET['district']
+        print(district)
         if district:
             queryset_list = queryset_list.filter(district__iexact=district)
     if 'subject' in request.GET:
         subject = request.GET['subject']
+        print(subject)
         if subject:
             queryset_list = queryset_list.filter(subject__iexact=subject)
 

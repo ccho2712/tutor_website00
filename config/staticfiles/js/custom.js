@@ -152,7 +152,9 @@ $(document).ready(function()
 			{
 				items:1,
 				loop:true,
-				autoplay:true,
+				autoplay:false,
+				autoplayTimeout: 0,
+				autoplayHoverPause: false,
 				nav:false,
 				dots:false,
 				smartSpeed:1200

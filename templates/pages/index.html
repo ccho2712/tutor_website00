@@ -37,8 +37,8 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col text-center">
-                                    <div class="home_slider_title">The Premium System Education</div>
-                                    <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                    <div class="home_slider_title">The Premium 5** Tutoring center</div>
+                                    <div class="home_slider_subtitle">Power Of 5** Tutoring Education</div>
                                     <div class="home_slider_form_container">
                                         <form action="{% url 'courses:search' %}"
                                               id="home_search_form_1"
@@ -49,11 +49,11 @@
                                                        placeholder="Keyword (Tutor, Course)"
                                                        name="keywords">
                                                 <select class="dropdown_item_select home_search_input" name='district'>
-                                                    <option>All Districts</option>
+                                                    <option value="">All Districts</option>
                                                     {% for key, value in district_choices.items %}<option value="{{ key }}">{{ value }}</option>{% endfor %}
                                                 </select>
                                                 <select class="dropdown_item_select home_search_input" name='subject'>
-                                                    <option>All Subjects</option>
+                                                    <option value="">All Subjects</option>
                                                     {% for key, value in subject_choices.items %}<option value="{{ key }}">{{ value }}</option>{% endfor %}
                                                 </select>
                                             </div>
@@ -65,34 +65,31 @@
                         </div>
                     </div>
                 </div>
-                <!-- Home Slider Item -->
                 <div class="owl-item">
                     <div class="home_slider_background"
-                         style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
+                         style="background-image:url({% static 'images/home_slider_3.jpg' %})"></div>
                     <div class="home_slider_content">
                         <div class="container">
                             <div class="row">
                                 <div class="col text-center">
-                                    <div class="home_slider_title">The Premium System Education</div>
-                                    <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                    <div class="home_slider_title">The Premium 5** Tutoring center</div>
+                                    <div class="home_slider_subtitle">Power Of 5** Tutoring Education</div>
                                     <div class="home_slider_form_container">
-                                        <form action="#"
-                                              id="home_search_form_2"
+                                        <form action="{% url 'courses:search' %}"
+                                              id="home_search_form_1"
                                               class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
                                             <div class="d-flex flex-row align-items-center justify-content-start">
-                                                <input type="search"
+                                                <input type="text"
                                                        class="home_search_input"
-                                                       placeholder="Keyword Search"
-                                                       required="required">
-                                                <select class="dropdown_item_select home_search_input">
-                                                    <option>Category Courses</option>
-                                                    <option>Category</option>
-                                                    <option>Category</option>
+                                                       placeholder="Keyword (Tutor, Course)"
+                                                       name="keywords">
+                                                <select class="dropdown_item_select home_search_input" name='district'>
+                                                    <option value="">All Districts</option>
+                                                    {% for key, value in district_choices.items %}<option value="{{ key }}">{{ value }}</option>{% endfor %}
                                                 </select>
-                                                <select class="dropdown_item_select home_search_input">
-                                                    <option>Select Price Type</option>
-                                                    <option>Price Type</option>
-                                                    <option>Price Type</option>
+                                                <select class="dropdown_item_select home_search_input" name='subject'>
+                                                    <option value="">All Subjects</option>
+                                                    {% for key, value in subject_choices.items %}<option value="{{ key }}">{{ value }}</option>{% endfor %}
                                                 </select>
                                             </div>
                                             <button type="submit" class="home_search_button">search</button>
@@ -103,34 +100,31 @@
                         </div>
                     </div>
                 </div>
-                <!-- Home Slider Item -->
                 <div class="owl-item">
                     <div class="home_slider_background"
-                         style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
+                         style="background-image:url({% static 'images/home_slider_2.jpg' %})"></div>
                     <div class="home_slider_content">
                         <div class="container">
                             <div class="row">
                                 <div class="col text-center">
-                                    <div class="home_slider_title">The Premium System Education</div>
-                                    <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                    <div class="home_slider_title">The Premium 5** Tutoring center</div>
+                                    <div class="home_slider_subtitle">Power Of 5** Tutoring Education</div>
                                     <div class="home_slider_form_container">
-                                        <form action="#"
-                                              id="home_search_form_3"
+                                        <form action="{% url 'courses:search' %}"
+                                              id="home_search_form_1"
                                               class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
                                             <div class="d-flex flex-row align-items-center justify-content-start">
-                                                <input type="search"
+                                                <input type="text"
                                                        class="home_search_input"
-                                                       placeholder="Keyword Search"
-                                                       required="required">
-                                                <select class="dropdown_item_select home_search_input">
-                                                    <option>Category Courses</option>
-                                                    <option>Category</option>
-                                                    <option>Category</option>
+                                                       placeholder="Keyword (Tutor, Course)"
+                                                       name="keywords">
+                                                <select class="dropdown_item_select home_search_input" name='district'>
+                                                    <option value="">All Districts</option>
+                                                    {% for key, value in district_choices.items %}<option value="{{ key }}">{{ value }}</option>{% endfor %}
                                                 </select>
-                                                <select class="dropdown_item_select home_search_input">
-                                                    <option>Select Price Type</option>
-                                                    <option>Price Type</option>
-                                                    <option>Price Type</option>
+                                                <select class="dropdown_item_select home_search_input" name='subject'>
+                                                    <option value="">All Subjects</option>
+                                                    {% for key, value in subject_choices.items %}<option value="{{ key }}">{{ value }}</option>{% endfor %}
                                                 </select>
                                             </div>
                                             <button type="submit" class="home_search_button">search</button>
@@ -157,11 +151,9 @@
             <div class="row">
                 <div class="col">
                     <div class="section_title_container text-center">
-                        <h2 class="section_title">Welcome To Unicat E-Learning</h2>
+                        <h2 class="section_title">Welcome To Tutor5**</h2>
                         <div class="section_subtitle">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem
-                            </p>
+                            <h3>Join us. Let's march to the road of 5** together.</h3>
                         </div>
                     </div>
                 </div>
@@ -171,11 +163,16 @@
                 <div class="col-lg-3 feature_col">
                     <div class="feature text-center trans_400">
                         <div class="feature_icon">
-                            <img src="{% static 'images/icon_1.png' %}" alt="">
+                            <img src="{% static 'images/icon_1.png' %}"
+                                 alt=""
+                                 style="width: 55px;
+                                        height: 55px">
                         </div>
                         <h3 class="feature_title">The Experts</h3>
                         <div class="feature_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p>
+                                We got the best tutors in Hong Kong to help you achieve your academic goals with personalized guidance and proven expertise.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -185,9 +182,11 @@
                         <div class="feature_icon">
                             <img src="{% static 'images/icon_2.png' %}" alt="">
                         </div>
-                        <h3 class="feature_title">Book & Library</h3>
+                        <h3 class="feature_title">Book & Notes</h3>
                         <div class="feature_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p>
+                                Curated study materials and expert-developed notes tailored to Hong Kong's curriculum, designed to simplify complex concepts
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -197,9 +196,11 @@
                         <div class="feature_icon">
                             <img src="{% static 'images/icon_3.png' %}" alt="">
                         </div>
-                        <h3 class="feature_title">Best Courses</h3>
+                        <h3 class="feature_title">Live or Video Courses</h3>
                         <div class="feature_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p>
+                                Learn flexibly: join interactive live sessions with real-time tutor feedback, or visit on-demand videos at your pace.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -211,7 +212,9 @@
                         </div>
                         <h3 class="feature_title">Award & Reward</h3>
                         <div class="feature_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p>
+                                Receive recognition for your hard work and dedication with our exclusive rewards program, including certificates and special scholarships.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -228,11 +231,9 @@
             <div class="row">
                 <div class="col">
                     <div class="section_title_container text-center">
-                        <h2 class="section_title">Popular Online Courses</h2>
+                        <h2 class="section_title">Popular 5** Courses</h2>
                         <div class="section_subtitle">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem
-                            </p>
+                            <h3>Here are the 5** courses which are selected for you.</h3>
                         </div>
                     </div>
                 </div>
@@ -343,7 +344,7 @@
     <!-- Counter -->
     <div class="counter">
         <div class="counter_background"
-             style="background-image:url(images/counter_background.jpg)"></div>
+             style="background-image: url({% static 'images/counter_background.jpg' %})"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -358,22 +359,22 @@
                         <div class="milestones d-flex flex-md-row flex-column align-items-center justify-content-between">
                             <!-- Milestone -->
                             <div class="milestone">
-                                <div class="milestone_counter" data-end-value="15">0</div>
-                                <div class="milestone_text">years</div>
+                                <div class="milestone_counter" data-end-value="1500">0</div>
+                                <div class="milestone_text">5 or above</div>
                             </div>
                             <!-- Milestone -->
                             <div class="milestone">
-                                <div class="milestone_counter" data-end-value="120" data-sign-after="k">0</div>
-                                <div class="milestone_text">years</div>
+                                <div class="milestone_counter" data-end-value="120" data-sign-after="+">0</div>
+                                <div class="milestone_text">5**</div>
                             </div>
                             <!-- Milestone -->
                             <div class="milestone">
                                 <div class="milestone_counter" data-end-value="670" data-sign-after="+">0</div>
-                                <div class="milestone_text">years</div>
+                                <div class="milestone_text">students</div>
                             </div>
                             <!-- Milestone -->
                             <div class="milestone">
-                                <div class="milestone_counter" data-end-value="320">0</div>
+                                <div class="milestone_counter" data-end-value="20">0</div>
                                 <div class="milestone_text">years</div>
                             </div>
                         </div>
@@ -679,7 +680,7 @@
                     <div class="news_post_large_container">
                         <div class="news_post_large">
                             <div class="news_post_image">
-                                <img src="images/news_1.jpg" alt="">
+                                <img src="{% static 'images/news_1.jpg' %}" alt="">
                             </div>
                             <div class="news_post_large_title">
                                 <a href="blog_single.html">Here’s What You Need to Know About Online Testing for the ACT and SAT</a>
