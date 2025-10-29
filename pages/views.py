@@ -7,7 +7,7 @@ from courses.choices import district_choices, subject_choices
 
 
 def index(request):
-    courses = Course.objects.all()[:3]
+    courses = Course.objects.all()[:4]
     tutors = Tutor.objects.all()[:4]
     context = {
         'courses': courses,

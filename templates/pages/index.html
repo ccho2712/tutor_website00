@@ -239,103 +239,47 @@
                 </div>
             </div>
             <div class="row courses_row">
-                <!-- Course -->
-                <div class="col-lg-4 course_col">
-                    <div class="course">
-                        <div class="course_image">
-                            <img src="{% static 'images/course_1.jpg' %}" alt="">
-                        </div>
-                        <div class="course_body">
-                            <h3 class="course_title">
-                                <a href="course.html">Software Training</a>
-                            </h3>
-                            <div class="course_teacher">Mr. John Taylor</div>
-                            <div class="course_text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                            </div>
-                        </div>
-                        <div class="course_footer">
-                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                <div class="course_info">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                    <span>20 Student</span>
+                <!--3 Courses-->
+                {% if courses %}
+                    {% for course in courses %}
+                        <div class="col-lg-6 course_col mt-3">
+                            <div class="course">
+                                <div class="course_image">
+                                    <img src="{{ course.photo_main.url }}" alt="">
                                 </div>
-                                <div class="course_info">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <span>5 Ratings</span>
+                                <div class="course_body">
+                                    <h3 class="course_title">
+                                        <a href="{% url 'courses:course' course.id %}">{{ course.title }}</a>
+                                    </h3>
+                                    <div class="course_teacher">{{ course.tutor.name }}</div>
+                                    <div class="course_text">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                    </div>
                                 </div>
-                                <div class="course_price ml-auto">$130</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Course -->
-                <div class="col-lg-4 course_col">
-                    <div class="course">
-                        <div class="course_image">
-                            <img src="{% static 'images/course_2.jpg' %}" alt="">
-                        </div>
-                        <div class="course_body">
-                            <h3 class="course_title">
-                                <a href="course.html">Developing Mobile Apps</a>
-                            </h3>
-                            <div class="course_teacher">Ms. Lucius</div>
-                            <div class="course_text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                            </div>
-                        </div>
-                        <div class="course_footer">
-                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                <div class="course_info">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                    <span>20 Student</span>
-                                </div>
-                                <div class="course_info">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <span>5 Ratings</span>
-                                </div>
-                                <div class="course_price ml-auto">Free</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Course -->
-                <div class="col-lg-4 course_col">
-                    <div class="course">
-                        <div class="course_image">
-                            <img src="{% static 'images/course_3.jpg' %}" alt="">
-                        </div>
-                        <div class="course_body">
-                            <h3 class="course_title">
-                                <a href="course.html">Starting a Startup</a>
-                            </h3>
-                            <div class="course_teacher">Mr. Charles</div>
-                            <div class="course_text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                            </div>
-                        </div>
-                        <div class="course_footer">
-                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                <div class="course_info">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                    <span>20 Student</span>
-                                </div>
-                                <div class="course_info">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <span>5 Ratings</span>
-                                </div>
-                                <div class="course_price ml-auto">
-                                    <span>$320</span>$220
+                                <div class="course_footer">
+                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                        <div class="course_info">
+                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            <span>{{ course.enrollment_display }}</span>
+                                        </div>
+                                        <div class="course_info">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <span>{{ course.rating }}</span>
+                                        </div>
+                                        <div class="course_price ml-auto">${{ course.price }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No courses available.</p>
+                {% endif %}
             </div>
             <div class="row">
                 <div class="col">
                     <div class="courses_button trans_200">
-                        <a href="#">view all courses</a>
+                        <a href="{% url 'courses:courses' %}">view all courses</a>
                     </div>
                 </div>
             </div>
@@ -344,12 +288,12 @@
     <!-- Counter -->
     <div class="counter">
         <div class="counter_background"
-             style="background-image: url({% static 'images/counter_background.jpg' %})"></div>
+             style="background-image: url({% static 'images/counter_background_hk.jpg' %})"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="counter_content">
-                        <h2 class="counter_title">Register Now</h2>
+                        <h2 class="counter_title" style="color: #2213c8ff;">Register Now</h2>
                         <div class="counter_text">
                             <p>
                                 Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dumy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -359,7 +303,7 @@
                         <div class="milestones d-flex flex-md-row flex-column align-items-center justify-content-between">
                             <!-- Milestone -->
                             <div class="milestone">
-                                <div class="milestone_counter" data-end-value="1500">0</div>
+                                <div class="milestone_counter" data-end-value="500">0</div>
                                 <div class="milestone_text">5 or above</div>
                             </div>
                             <!-- Milestone -->
@@ -369,7 +313,7 @@
                             </div>
                             <!-- Milestone -->
                             <div class="milestone">
-                                <div class="milestone_counter" data-end-value="670" data-sign-after="+">0</div>
+                                <div class="milestone_counter" data-end-value="1500" data-sign-after="+">0</div>
                                 <div class="milestone_text">students</div>
                             </div>
                             <!-- Milestone -->
@@ -538,7 +482,7 @@
             <div class="row">
                 <div class="col">
                     <div class="section_title_container text-center">
-                        <h2 class="section_title">The Best Tutors in Town</h2>
+                        <h2 class="section_title">The Best Tutors in Hong Kong</h2>
                         <div class="section_subtitle">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem
@@ -548,114 +492,40 @@
                 </div>
             </div>
             <div class="row team_row">
-                <!-- Team Item -->
-                <div class="col-lg-3 col-md-6 team_col">
-                    <div class="team_item">
-                        <div class="team_image">
-                            <img src="{% static 'images/team_1.jpg' %}" alt="">
-                        </div>
-                        <div class="team_body">
-                            <div class="team_title">
-                                <a href="#">Jacke Masito</a>
-                            </div>
-                            <div class="team_subtitle">Marketing & Management</div>
-                            <div class="social_list">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Team Item -->
-                <div class="col-lg-3 col-md-6 team_col">
-                    <div class="team_item">
-                        <div class="team_image">
-                            <img src="{% static 'images/team_2.jpg' %}" alt="">
-                        </div>
-                        <div class="team_body">
-                            <div class="team_title">
-                                <a href="#">William James</a>
-                            </div>
-                            <div class="team_subtitle">Designer & Website</div>
-                            <div class="social_list">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
+                <!--4 Tutors-->
+                {% if tutors %}
+                    {% for tutor in tutors %}
+                        <!-- Team Item -->
+                        <div class="col-lg-3 col-md-6 team_col">
+                            <div class="team_item">
+                                <div class="team_image">
+                                    <img src="{{ tutor.photo.url }}" alt="{{ tutor.name }}">
+                                </div>
+                                <div class="team_body">
+                                    <div class="team_title">
+                                        <a href="{% url 'tutors:tutor' tutor.id %}">{{ tutor.name }}</a>
+                                    </div>
+                                    <div class="team_subtitle">{{ tutor.course_subject }}</div>
+                                    <div class="social_list">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Team Item -->
-                <div class="col-lg-3 col-md-6 team_col">
-                    <div class="team_item">
-                        <div class="team_image">
-                            <img src="{% static 'images/team_3.jpg' %}" alt="">
-                        </div>
-                        <div class="team_body">
-                            <div class="team_title">
-                                <a href="#">John Tyler</a>
-                            </div>
-                            <div class="team_subtitle">Quantum mechanics</div>
-                            <div class="social_list">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Team Item -->
-                <div class="col-lg-3 col-md-6 team_col">
-                    <div class="team_item">
-                        <div class="team_image">
-                            <img src="{% static 'images/team_4.jpg' %}" alt="">
-                        </div>
-                        <div class="team_body">
-                            <div class="team_title">
-                                <a href="#">Veronica Vahn</a>
-                            </div>
-                            <div class="team_subtitle">Math & Physics</div>
-                            <div class="social_list">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No tutors available.</p>
+                {% endif %}
             </div>
         </div>
     </div>
