@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course
+from .models import Course, Curriculum
 # Register your models here.
 
 
@@ -11,4 +11,11 @@ class CourseAdmin(admin.ModelAdmin):
                      'class_type', 'students_enrolled')
 
 
+class CurriculumAdmin(admin.ModelAdmin):
+    list_display = ('name', 'text')
+    list_display_links = ('name', )
+    list_editable = ('name',)
+
+
 admin.site.register(Course, CourseAdmin)
+admin.site.register(Curriculum, CurriculumAdmin)

@@ -5,7 +5,24 @@ from schools.models import School
 from .choices import district_choices, subject_choices
 
 
+class Curriculum(models.Model):
+    name = models.CharField(max_length=50,
+                            choices=subject_choices,
+                            default='Chinese',
+                            help_text='Subject matter of the curriculum'
+                            )
+    text = models.TextField(blank=True,
+                            null=True,
+                            help_text='Detailed syllabus of the curriculum'
+                            )
+
+    def __str__(self):
+        return self.name
+
+
 class Course(models.Model):
+    syllabus = models.ManyToManyField(Curriculum, blank=True)
+
     CLASS_TYPE_CHOICES = [
         ('live', 'Live'),
         ('video', 'Video'),
