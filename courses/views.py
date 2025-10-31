@@ -22,11 +22,12 @@ def courses(request):
 def course(request, course_id):
     course = Course.objects.get(id=course_id)
     mvp_tutors = Tutor.objects.all().filter(is_mvp=True)
-
+    courses = Course.objects.all()[:3]
     print(course.syllabus)
     context = {
         'course': course,
         'mvp_tutors': mvp_tutors,
+        'courses': courses,
     }
     return render(request, 'courses/course.html', context)
 
