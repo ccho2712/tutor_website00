@@ -12,9 +12,9 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class CurriculumAdmin(admin.ModelAdmin):
-    list_display = ('name', 'text')
-    list_display_links = ('name', )
-    list_editable = ('name',)
+    list_display = ('name', 'text',)
+    list_display_links = ('name',)
+    list_editable = ()
 
 
 admin.site.register(Course, CourseAdmin)
