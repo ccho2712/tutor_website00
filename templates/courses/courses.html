@@ -56,19 +56,19 @@
                 <!-- Courses Main Content -->
                 <div class="col-lg-8">
                     <div class="courses_search_container">
-                        <form action="#"
+                        <form action="{% url 'courses:search' %}"
                               id="courses_search_form"
                               class="courses_search_form d-flex flex-row align-items-center justify-content-start">
                             <input type="search"
                                    class="courses_search_input"
                                    placeholder="Search Courses"
-                                   required="required">
+                                   name="keywords">
                             <select id="courses_search_select"
-                                    class="courses_search_select courses_search_input">
-                                <option>All Categories</option>
-                                <option>Category</option>
-                                <option>Category</option>
-                                <option>Category</option>
+                                    class="courses_search_select courses_search_input"
+                                    name="class_type">
+                                <option value=''>All Types</option>
+                                <option>live</option>
+                                <option>video</option>
                             </select>
                             <button action="submit" class="courses_search_button ml-auto">search now</button>
                         </form>
@@ -81,7 +81,7 @@
                                     <div class="col-lg-6 course_col mt-3">
                                         <div class="course">
                                             <div class="course_image">
-                                                <img src="{{ course.photo_main.url }}" alt="">
+                                                <img src="{{ course.photo_main.url }}" alt="" height="300px" width="500px">
                                             </div>
                                             <div class="course_body">
                                                 <h3 class="course_title">
@@ -89,7 +89,13 @@
                                                 </h3>
                                                 <div class="course_teacher">{{ course.tutor.name }}</div>
                                                 <div class="course_text">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                                    <a href="{% url 'courses:course' course.id %}">Click to view more</a>
+                                                </div>
+                                                <br />
+                                                <div class="course_info">
+                                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                                    <span>{{ course.school }}</span>
+                                                    <span class="ml-2 text-capitalize text-info">{{ course.class_type }}</span>
                                                 </div>
                                             </div>
                                             <div class="course_footer">

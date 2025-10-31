@@ -5,15 +5,22 @@ from tutors.models import Tutor
 from schools.models import School
 from .choices import district_choices, subject_choices
 from django.db.models import Q
-# from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def courses(request):
+    items_per_page = request.GET.get('items_per_page')
     courses = Course.objects.all()
+    if items_per_page != 0:
+        paginator = Paginator(courses, items_per_page)
+    else:
+        paginator = Paginator(courses, 2)
+    page = request.GET.get('page')
+    paged_courses = paginator.get_page(page)
     mvp_tutors = Tutor.objects.all().filter(is_mvp=True)
 
     context = {
-        'courses': courses,
+        'courses': paged_courses,
         'mvp_tutors': mvp_tutors,
     }
     return render(request, 'courses/courses.html', context)
@@ -23,7 +30,6 @@ def course(request, course_id):
     course = Course.objects.get(id=course_id)
     mvp_tutors = Tutor.objects.all().filter(is_mvp=True)
     courses = Course.objects.all()[:3]
-    print(course.syllabus)
     context = {
         'course': course,
         'mvp_tutors': mvp_tutors,
@@ -36,20 +42,22 @@ def search(request):
     queryset_list = Course.objects.order_by('-created_at')
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
-        print(keywords)
         if keywords:
             queryset_list = queryset_list.filter(Q(school__title__icontains=keywords) | Q(
                 title__icontains=keywords) | Q(tutor__name__icontains=keywords))
     if 'district' in request.GET:
         district = request.GET['district']
-        print(district)
         if district:
             queryset_list = queryset_list.filter(district__iexact=district)
     if 'subject' in request.GET:
         subject = request.GET['subject']
-        print(subject)
         if subject:
             queryset_list = queryset_list.filter(subject__iexact=subject)
+    if 'class_type' in request.GET:
+        class_type = request.GET['class_type']
+        if class_type:
+            queryset_list = queryset_list.filter(class_type__iexact=class_type)
+    mvp_tutors = Tutor.objects.all().filter(is_mvp=True)
 
     # paginator = Paginator(queryset_list, 3)
     # page = request.GET.get('page')
@@ -59,6 +67,8 @@ def search(request):
         'courses': queryset_list,
         'district_choices': district_choices,
         "subject_choices": subject_choices,
+        'mvp_tutors': mvp_tutors,
+
         "values": request.GET,
     }
     return render(request, 'courses/search.html', context)
