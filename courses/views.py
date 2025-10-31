@@ -9,14 +9,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def courses(request):
-    items_per_page = request.GET.get('items_per_page')
     courses = Course.objects.all()
-    if items_per_page != 0:
-        paginator = Paginator(courses, items_per_page)
-    else:
-        paginator = Paginator(courses, 2)
-    page = request.GET.get('page')
+    items_per_page = int(request.GET.get('items_per_page', 2))
+    paginator = Paginator(courses, items_per_page)
+    page = request.GET.get('page', 1)
     paged_courses = paginator.get_page(page)
+
     mvp_tutors = Tutor.objects.all().filter(is_mvp=True)
 
     context = {

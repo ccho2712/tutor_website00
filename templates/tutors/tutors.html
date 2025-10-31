@@ -50,8 +50,13 @@
     </div>
   </div>
   <!--Tutors-->
-  <div class="container">
-    <div class="text-success display-4">Our Tutors</div>
+  <div class="container"
+       style="background-image: url('{% static 'images/video_bg.png' %}');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              padding: 20px">
+    <div class="display-4" style="color: #fff;">Our Tutors</div>
     <div class="row">
       {% for tutor in tutors %}
         <div class="col-md-4 mb-4">

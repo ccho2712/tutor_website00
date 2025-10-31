@@ -15,19 +15,10 @@
           type="text/css">
     <link rel="stylesheet"
           type="text/css"
-          href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+          href="{% static 'styles/blog_single.css' %}">
     <link rel="stylesheet"
           type="text/css"
-          href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
-    <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
-    <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'styles/course.css' %}">
-    <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'styles/course_responsive.css' %}">
+          href="{% static 'styles/blog_single_responsive.css' %}">
 {% endblock link %}
 {% block content %}
     <!-- Home (breadcrumbs)-->
@@ -52,131 +43,174 @@
             </div>
         </div>
     </div>
-    <!--School-->
-    <section id="school" class="py-4">
+    <!-- School -->
+    <div class="blog">
         <div class="container">
-            <a href={% url 'schools:schools' %} class="btn btn-light mb-4">Back To All Schools</a>
             <div class="row">
-                <div class="col-md-9">
-                    <!-- Home Main Image -->
-                    <img src="{{ school.photo_main.url }}"
-                         alt=""
-                         class="img-main img-fluid mb-3" />
-                    <!-- Thumbnails -->
-                    <div class="row mb-5 thumbs">
-                        {% if school.photo_1 %}
-                            <div class="col-md-2">
-                                <a href={{ school.photo_1.url }} data-lightbox="home-images">
-                                    <img src={{ school.photo_1.url }} alt="" class="img-fluid" />
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if school.photo_2 %}
-                            <div class="col-md-2">
-                                <a href={{ school.photo_2.url }} data-lightbox="home-images">
-                                    <img src={{ school.photo_2.url }} alt="" class="img-fluid" />
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if school.photo_3 %}
-                            <div class="col-md-2">
-                                <a href={{ school.photo_3.url }} data-lightbox="home-images">
-                                    <img src={{ school.photo_3.url }} alt="" class="img-fluid" />
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if school.photo_4 %}
-                            <div class="col-md-2">
-                                <a href={{ school.photo_4.url }} data-lightbox="home-images">
-                                    <img src={{ school.photo_4.url }} alt="" class="img-fluid" />
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if school.photo_5 %}
-                            <div class="col-md-2">
-                                <a href={{ school.photo_5.url }} data-lightbox="home-images">
-                                    <img src={{ school.photo_5.url }} alt="" class="img-fluid" />
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if school.photo_6 %}
-                            <div class="col-md-2">
-                                <a href={{ school.photo_6.url }} data-lightbox="home-images">
-                                    <img src={{ school.photo_6.url }} alt="" class="img-fluid" />
-                                </a>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <!-- Fields -->
-                    <div class="row mb-5 fields">
-                        <div class="col-md-6">
-                            <ul class="list-group list-group-flush">
-                                <div class="row py-2 text-secondary">
-                                    <div class="col-6">
-                                        <i class="fas fa-th-large"></i> Services {{ pass }}
-                                    </div>
-                                    <div class="col-6">
-                                        <i class="fas fa-dumbbell"></i> Screens {{ pass }}
+                <!-- Content -->
+                <div class="col-lg-8">
+                    <div class="blog_content">
+                        <div class="blog_title">{{ school.title }}</div>
+                        <div class="blog_image">
+                            <img src="{{ school.photo_main.url }}" alt="">
+                        </div>
+                        <div class="blog_subtitle">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> Address: {{ school.address }}
+                        </div>
+                        <div class="blog_subtitle">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i> Facility:
+                        </div>
+                        <div class="blog_images">
+                            <div class="row">
+                                <div class="col-lg-6 blog_images_col">
+                                    <div class="blog_image_small">
+                                        <img src="{{ school.photo_1.url }}" alt="">
                                     </div>
                                 </div>
-                                <div class="row py-2 text-secondary">
-                                    <div class="col-6">
-                                        <i class="fas fa-bed"></i> Rooms {{ pass }}
-                                    </div>
-                                    <div class="col-6">
-                                        <i class="fas fa-bath"></i> Professionals {{ pass }}
+                                <div class="col-lg-6 blog_images_col">
+                                    <div class="blog_image_small">
+                                        <img src="{{ school.photo_2.url }}" alt="">
                                     </div>
                                 </div>
-                                <div class="row py-2 text-secondary">
-                                    <div class="col-12">
-                                        <i class="fas fa-user"></i> {{ pass }}
-                                    </div>
-                                </div>
-                                <div class="row text-secondary pb-2">
-                                    <div class="col-12">
-                                        <i class="fas fa-clock"></i> Reservation required
-                                    </div>
-                                </div>
-                            </ul>
+                            </div>
                         </div>
                     </div>
-                    {% comment %} <!--professionals-->
-                                        <div class="row mb-5">
-                                        <h4 class="mr-3 text-secondary">Professionals:</h4>
-                                        {% if listing.professionals.all %}
-                                            <ul>
-                                                {% for professional in listing.professionals.all %}
-                                                    <!-- Access fields from the Subject model (e.g. name)-->
-                                                    <li class="mr-3">
-                                                        <h4>{{ professional.name }}</h4>
-                                                </li>
-                                            {% endfor %}
-                                    </ul>
-                                {% else %}
-                                    <h4>No professionals available</h4>
-                                {% endif %}
-                        </div>
-                        <!--services-->
-                        <div class="row mb-5">
-                        <h4 class="mr-3 text-secondary">Services:</h4>
-                        {% if listing.services.all %}
+                    <div class="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                        <div class="blog_social ml-lg-auto">
+                            <span>Share:</span>
                             <ul>
-                                {% for service in listing.services.all %}
-                                    <li class="mr-3">
-                                        <h4>{{ service.name }}</h4>
-                                    </li>
-                                {% endfor %}
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                                </li>
                             </ul>
-                        {% else %}
-                            <h4>No services available</h4>
-                        {% endif %}
-                    </div>
-                    <!-- Description -->
-                    <div class="row mb-5">
-                        <div class="col-md-12">
-                            <div class='col-md-12'>{{ listing.description }}</div>
                         </div>
-</div> {% endcomment %}
+                    </div>
+                </div>
+                <!-- Blog Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">Information</div>
+                            <div class="sidebar_categories">
+                                <ul class="categories_list">
+                                    <li>
+                                        <a href="#" class="clearfix">District:<span>{{ school.district }}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="clearfix">Classroom:<span>{{ school.room_num }}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="clearfix">Office Hour<span>{{ school.office_hr }}</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Latest Course -->
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">Popular Courses</div>
+                            <div class="sidebar_latest">
+                                <!-- Latest Course -->
+                                {% if courses %}
+                                    {% for course in courses %}
+                                        <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                            <div class="latest_image">
+                                                <div>
+                                                    <img src="{{ course.photo_main.url }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="latest_content">
+                                                <div class="latest_title">
+                                                    <a href="course.html">{{ course.title }}</a>
+                                                </div>
+                                                <div class="latest_price">${{ course.price }}</div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Gallery -->
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">Instagram</div>
+                            <div class="sidebar_gallery">
+                                <ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig1.png' %}">
+                                            <img src="{% static 'images/ig1.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig2.png' %}">
+                                            <img src="{% static 'images/ig2.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig3.png' %}">
+                                            <img src="{% static 'images/ig3.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig4.png' %}">
+                                            <img src="{% static 'images/ig4.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="#">
+                                            <img src="#" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="#">
+                                            <img src="#" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Tags -->
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">Tags</div>
+                            <div class="sidebar_tags">
+                                <ul class="tags_list">
+                                    <li>
+                                        <a href="#">DSE</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5**</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Universtiy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Work hard, Play hard</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 </div>
@@ -186,9 +220,8 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
     <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
-    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
     <script src="{% static 'plugins/easing/easing.js' %}"></script>
     <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
     <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
-    <script src="{% static 'js/course.js' %}"></script>
+    <script src="{% static 'js/blog_single.js' %}"></script>
 {% endblock script %}

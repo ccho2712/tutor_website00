@@ -10,24 +10,17 @@
     <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
           rel="stylesheet"
           type="text/css">
-    <link href="{% static 'plugins/colorbox/colorbox.css' %}"
+    <link href="{% static 'plugins/video-js/video-js.css' %}"
           rel="stylesheet"
           type="text/css">
     <link rel="stylesheet"
           type="text/css"
-          href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+          href="{% static 'styles/blog.css' %}">
     <link rel="stylesheet"
           type="text/css"
-          href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+          href="{% static 'styles/blog_responsive.css' %}">
     <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
-    <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'styles/courses.css' %}">
-    <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'styles/courses_responsive.css' %}">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock link %}
 {% block content %}
     <!-- Home -->
@@ -49,75 +42,60 @@
             </div>
         </div>
     </div>
-    <!-- Schools -->
-    <section id="schools" class="py-4">
+    <!-- Blog -->
+    <div class="blog">
         <div class="container">
             <div class="row">
-                <!-- School 1 -->
-                {% if schools %}
-                    {% for school in schools %}
-                        <div class="col-md-6 col-lg-4 mb-4">
-                            <div class="card school-preview">
-                                <img class="card-img-top" src={{ school.photo_main.url }} alt="" />
-                                <div class="card-img-overlay"></div>
-                                <div class="card-body">
-                                    <div class="school-heading text-center">
-                                        <h4 class="text-primary">{{ school.title |title }}</h4>
+                <div class="col">
+                    <div class="blog_post_container">
+                        <!-- Blog Post -->
+                        {% for school in schools %}
+                            <div class="blog_post trans_200">
+                                <div class="blog_post_image">
+                                    <img src="{{ school.photo_main.url }}" alt="">
+                                </div>
+                                <div class="blog_post_body">
+                                    <div class="blog_post_title">
+                                        <a href="{% url 'schools:school' school.id %}">{{ school.title }}</a>
+                                    </div>
+                                    <div class="blog_post_meta">
+                                        <div class='container'>
+                                            <p>
+                                                <i class="fas fa-map-marker-alt"></i> {{ school.district }}
+                                            </p>
+                                            <p>
+                                                <i class="far fa-clock"></i> {{ school.office_hr }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="blog_post_text">
                                         <p>
-                                            <i class="fas fa-map-marker text-secondary"></i> {{ school.district }}
+                                            Welcome to {{ school.title }}, a premier school in {{ school.district }}. We offer a comprehensive curriculum that covers all subjects, from elementary to high school. Our dedicated teachers are committed to providing a positive and enriching learning experience for each student.
                                         </p>
                                     </div>
-                                    <hr />
-                                    <div class="row py-2 text-secondary">
-                                        <div class="col-6">
-                                            <i class="fas fa-th-large"></i> Services
-                                        </div>
-                                        {% comment %} <div class="col-6">
-                    <i class="fas fa-dumbbell"></i> Screen {{school.screen}} 
-                                        </div> {% endcomment %}
-                                    </div>
-                                    <div class="row py-2 text-secondary">
-                                        <div class="col-6">
-                                            <i class="fas fa-bed"></i> Rooms {{ school.room_num }}
-                                        </div>
-                                        <div class="col-6">
-                                            <i class="fas fa-bath"></i> Address {{ school.address }}
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="row py-2 text-secondary">
-                                        <div class="col-12">
-                                            <i class="fas fa-user"></i> {{ tutor.name }}
-                                        </div>
-                                    </div>
-                                    <div class="row text-secondary pb-2">
-                                        <div class="col-12">
-                                            <i class="fas fa-clock"></i> Reservation required
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <a href="{% url "schools:school" school.id %}"
-                                       class="btn btn-primary btn-block">More Info</a>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="col-md-12">
-                        <p>No School Available</p>
+                        {% endfor %}
                     </div>
-                {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <div class="load_more trans_200">
+                        <a href="#">load more</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
     <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
-    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
     <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/masonry/masonry.js' %}"></script>
+    <script src="{% static 'plugins/video-js/video.min.js' %}"></script>
     <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
-    <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
-    <script src="{% static 'js/courses.js' %}"></script>
+    <script src="{% static 'js/blog.js' %}"></script>
 {% endblock script %}

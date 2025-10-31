@@ -33,7 +33,7 @@
   <!-- Home (breadcrumbs)-->
   <div class="home">
     <div class="breadcrumbs_container">
-      <div class="container">
+      <div class="container" style="background-color: transparent;">
         <div class="row">
           <div class="col">
             <div class="breadcrumbs">
@@ -52,31 +52,85 @@
       </div>
     </div>
   </div>
-  <!--Tutor Profile-->
-  <div class="container">
-    <div class="container text-center">
-      <div class="tutor-profile">
+  <!-- Tutor Profile -->
+  <div class="container-fluid tutor-profile-container"
+       style="background-image: url('{% static 'images/tutor_bg.png' %}');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              min-height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center">
+    <div class="container tutor-profile-content p-5 rounded"
+         style="max-width: 800px">
+      <div class="text-center">
+        <!-- Main Photo -->
         <img src="{{ tutor.photo.url }}"
              alt="{{ tutor.name }}"
-             class="tutor-photo-large"
-             style="width: 300px;
-                    height: 300px">
-        <h1>{{ tutor.name }}</h1>
-        {% if tutor.is_mvp %}<p class="badge">🌟 MVP Tutor</p>{% endif %}
-        <p>
-          <strong>Subject:</strong> {{ tutor.course_subject }}
-        </p>
-        <p>
-          <strong>Phone:</strong> {{ tutor.phone }}
-        </p>
-        <p>
-          <strong>Email:</strong> <a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a>
-        </p>
-        <div class="description">
-          <h2>About {{ tutor.name }}</h2>
-          <p>{{ tutor.description }}</p>
+             class="img-fluid rounded-circle mb-4"
+             style="width: 200px;
+                    height: 200px;
+                    object-fit: cover">
+        <h1 class="mb-3">{{ tutor.name }}</h1>
+        {% if tutor.is_mvp %}<span class="badge bg-warning text-dark mb-3">🌟 MVP Tutor</span>{% endif %}
+        <!-- Basic Info -->
+        <div class="tutor-details mb-4">
+          <p>
+            <strong>Subject:</strong> {{ tutor.course_subject }}
+          </p>
+          <p>
+            <strong>Rating:</strong> {{ tutor.rating }}/5.0
+          </p>
+          <p>
+            <strong>Experience:</strong> {{ tutor.experience }} years
+          </p>
+          <p>
+            <strong>Students Taught:</strong> {{ tutor.taught_students }}+
+          </p>
+          <p>
+            <strong>Member Since:</strong> {{ tutor.hire_date|date:"F Y" }}
+          </p>
         </div>
-        <a href="{% url 'tutors:tutors' %}" class="btn btn-light mb-4">← Back to All Tutors</a>
+        <!-- Contact Info -->
+        <div class="contact-info mb-4 p-3 bg-light rounded">
+          <h4>Contact</h4>
+          <p>
+            <i class="fa fa-phone"></i> {{ tutor.phone }}
+          </p>
+          <p>
+            <i class="fa fa-envelope"></i> <a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a>
+          </p>
+        </div>
+        <!-- Additional Photos -->
+        {% if tutor.photo_1 or tutor.photo_2 or tutor.photo_3 %}
+          <div class="additional-photos mb-4">
+            <h4>Gallery</h4>
+            <div class="row">
+              {% if tutor.photo_1 %}
+                <div class="col-md-4 mb-3">
+                  <img src="{{ tutor.photo_1.url }}" class="img-thumbnail">
+                </div>
+              {% endif %}
+              {% if tutor.photo_2 %}
+                <div class="col-md-4 mb-3">
+                  <img src="{{ tutor.photo_2.url }}" class="img-thumbnail">
+                </div>
+              {% endif %}
+              {% if tutor.photo_3 %}
+                <div class="col-md-4 mb-3">
+                  <img src="{{ tutor.photo_3.url }}" class="img-thumbnail">
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        <!-- Description -->
+        <div class="tutor-bio mb-4">
+          <h3>About Me</h3>
+          <p class="text-muted">{{ tutor.description }}</p>
+        </div>
+        <a href="{% url 'tutors:tutors' %}" class="btn btn-primary">← Back to All Tutors</a>
       </div>
     </div>
   </div>

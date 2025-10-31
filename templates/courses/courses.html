@@ -118,35 +118,53 @@
                                 <p>No courses available.</p>
                             {% endif %}
                         </div>
+                        <!-- Pagination -->
                         <div class="row pagination_row">
                             <div class="col">
                                 <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
                                     <ul class="pagination_list">
-                                        <li class="active">
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                        </li>
+                                        {% if courses.has_previous %}
+                                            <li>
+                                                <a href="?page={{ courses.previous_page_number }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                            </li>
+                                        {% endif %}
+                                        {% for i in courses.paginator.page_range %}
+                                            \
+                                            {% if courses.number == i %}
+                                                <li class="active">
+                                                    <a href="#">{{ i }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <a href="?page={{ i }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}">{{ i }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if courses.has_next %}
+                                            <li>
+                                                <a href="?page={{ courses.next_page_number }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                            </li>
+                                        {% endif %}
                                     </ul>
                                     <div class="courses_show_container ml-auto clearfix">
                                         <div class="courses_show_text">
-                                            Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:
+                                            Showing <span class="courses_showing">{{ courses.start_index }}-{{ courses.end_index }}</span> of <span class="courses_total">{{ courses.paginator.count }}</span> results
                                         </div>
                                         <div class="courses_show_content">
                                             <span>Show:</span>
-                                            <select id="courses_show_select" class="courses_show_select">
-                                                <option>06</option>
-                                                <option>12</option>
-                                                <option>24</option>
-                                                <option>36</option>
-                                            </select>
+                                            <form action="" method="GET" id="items_per_page_form">
+                                                <input type="hidden" name="page" value="{{ courses.number }}">
+                                                {% for key, value in request.GET.items %}
+                                                    {% if key != 'page' and key != 'items_per_page' %}
+                                                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <select name="items_per_page" onchange="this.form.submit()">
+                                                    <option value="2" {% if items_per_page == 2 %}selected{% endif %}>2</option>
+                                                    <option value="4" {% if items_per_page == 4 %}selected{% endif %}>4</option>
+                                                    <option value="6" {% if items_per_page == 6 %}selected{% endif %}>6</option>
+                                                </select>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -174,6 +192,50 @@
                                         </div>
                                     {% endfor %}
                                 {% endif %}
+                            </div>
+                        </div>
+                        <!-- Gallery -->
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">Instagram</div>
+                            <div class="sidebar_gallery">
+                                <ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig1.png' %}">
+                                            <img src="{% static 'images/ig1.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig2.png' %}">
+                                            <img src="{% static 'images/ig2.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig3.png' %}">
+                                            <img src="{% static 'images/ig3.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="{% static 'images/ig4.png' %}">
+                                            <img src="{% static 'images/ig4.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="#">
+                                            <img src="#" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="gallery_item">
+                                        <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
+                                        <a class="colorbox" href="#">
+                                            <img src="#" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
