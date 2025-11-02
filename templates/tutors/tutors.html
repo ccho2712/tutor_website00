@@ -28,6 +28,8 @@
   <link rel="stylesheet"
         type="text/css"
         href="{% static 'styles/courses_responsive.css' %}">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock link %}
 {% block content %}
   <!-- Home -->
@@ -81,7 +83,65 @@
         <p>No tutors available at the moment.</p>
       {% endfor %}
     </div>
+    <!-- Pagination -->
+    <div class="row pagination_row mt-4 mb-4">
+      <div class="col">
+        <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+          <ul class="pagination_list">
+            {% if tutors.has_previous %}
+              <li>
+                <a href="?page={{ tutors.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+              </li>
+            {% endif %}
+            {% with start_page=tutors.number|add:"-1"|default:1 %}
+              {% with end_page=tutors.number|add:"1"|default:3 %}
+                {% for i in tutors.paginator.page_range %}
+                  {% if i >= start_page and i <= end_page %}
+                    {% if tutors.number == i %}
+                      <li class="active">
+                        <a href="#">{{ i }}</a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <a href="?page={{ i }}">{{ i }}</a>
+                      </li>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {% endwith %}
+            {% endwith %}
+            {% if tutors.has_next %}
+              <li>
+                <a href="?page={{ tutors.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              </li>
+            {% endif %}
+          </ul>
+          <div class="tutors_show_container ml-auto clearfix">
+            <div class="tutors_show_text text-white">
+              Showing <span class="tutors_showing">{{ tutors.start_index }}-{{ tutors.end_index }}</span> of <span class="tutors_total">{{ tutors.paginator.count }}</span> results
+            </div>
+            <div class="tutors_show_content text-white">
+              <span>Show:</span>
+              <form action="" method="GET" id="items_per_page_form">
+                <input type="hidden" name="page" value="{{ tutors.number }}">
+                {% for key, value in request.GET.items %}
+                  {% if key != 'page' and key != 'items_per_page' %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                  {% endif %}
+                {% endfor %}
+                <select name="items_per_page" onchange="this.form.submit()">
+                  <option value="4" {% if items_per_page == 4 %}selected{% endif %}>4</option>
+                  <option value="6" {% if items_per_page == 6 %}selected{% endif %}>6</option>
+                </select>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+</div>
 {% endblock content %}
 {% block script %}
   <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>

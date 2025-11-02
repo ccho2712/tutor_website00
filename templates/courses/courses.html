@@ -28,6 +28,8 @@
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'styles/courses_responsive.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock link %}
 {% block content %}
     <!-- Home -->
@@ -128,18 +130,23 @@
                                                 <a href="?page={{ courses.previous_page_number }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                                             </li>
                                         {% endif %}
-                                        {% for i in courses.paginator.page_range %}
-                                            \
-                                            {% if courses.number == i %}
-                                                <li class="active">
-                                                    <a href="#">{{ i }}</a>
-                                                </li>
-                                            {% else %}
-                                                <li>
-                                                    <a href="?page={{ i }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}">{{ i }}</a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
+                                        {% with start_page=courses.number|add:"-1"|default:1 %}
+                                            {% with end_page=courses.number|add:"1"|default:3 %}
+                                                {% for i in courses.paginator.page_range %}
+                                                    {% if i >= start_page and i <= end_page %}
+                                                        {% if courses.number == i %}
+                                                            <li class="active">
+                                                                <a href="#">{{ i }}</a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li>
+                                                                <a href="?page={{ i }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}">{{ i }}</a>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endwith %}
+                                        {% endwith %}
                                         {% if courses.has_next %}
                                             <li>
                                                 <a href="?page={{ courses.next_page_number }}{% if request.GET.items_per_page %}&items_per_page={{ request.GET.items_per_page }}{% endif %}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>

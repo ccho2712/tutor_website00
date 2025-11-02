@@ -72,13 +72,16 @@ class Course(models.Model):
         default=0.0,
         help_text='Average rating from 0.0 to 5.0'
     )
-    price = models.DecimalField(
-        max_digits=8,
-        decimal_places=2,
+    price = models.IntegerField(
+        default=500,
+        blank=True,
+        null=True,
         help_text='Course price in HKD'
     )
-    duration = models.PositiveIntegerField(
-        default=1.5,
+    duration = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        default=2.0,
         help_text='Course duration in hours'
     )
     total_classes = models.PositiveIntegerField(
