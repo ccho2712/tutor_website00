@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    | Copyright notification
+{% endblock title %}
+{% block link %}
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/contact.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/contact_responsive.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock link %}
+{% block content %}
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'pages:index' %}">Home</a>
+                                </li>
+                                <li>Copyright notification</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact -->
+    <div class="contact">
+        <div class="container py-5">
+            <h4 class="text-success mb-4">Copyright Policy</h4>
+            <p class="text-muted">
+                <strong>Last Updated:</strong> November 04, 2025
+            </p>
+            <p>
+                All content on <strong>Tutor5**</strong> — including course materials, videos, quizzes, logos, and website design — is protected by copyright laws and international treaties.
+            </p>
+            <h5>Ownership</h5>
+            <ul>
+                <li>
+                    <strong>Platform Content:</strong> Owned by Tutor5** or licensed to us.
+                </li>
+                <li>
+                    <strong>User Content:</strong> You own what you upload (notes, questions), but grant us a license to display it.
+                </li>
+            </ul>
+            <h5>Allowed Use</h5>
+            <ul>
+                <li>Personal, non-commercial study</li>
+                <li>Printing notes for personal use</li>
+                <li>Sharing public course links</li>
+            </ul>
+            <h5>Prohibited Use</h5>
+            <ul>
+                <li>Reselling or redistributing paid content</li>
+                <li>Uploading to competing platforms</li>
+                <li>Removing watermarks or copyright notices</li>
+                <li>Creating derivative courses for sale</li>
+            </ul>
+            <h5>DMCA Takedown</h5>
+            <p>To report infringement:</p>
+            <ol>
+                <li>
+                    Email <a href="mailto:dmca@tutor5star.com">dmca@tutor5star.com</a>
+                </li>
+                <li>Include: Your name, work description, proof of ownership, URL</li>
+                <li>We respond within 48 hours</li>
+            </ol>
+            <hr>
+            <p class="text-muted small">© 2025 Tutor5**. Protecting Knowledge. Empowering Minds.</p>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src='https://www.google.com.hk/maps/@22.3117312,114.2259712,14z?hl=en&entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D'></script>
+    <script src="{% static 'plugins/marker_with_label/marker_with_label.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
+{% endblock script %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    | Privacy Policy
+{% endblock title %}
+{% block link %}
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/contact.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/contact_responsive.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock link %}
+{% block content %}
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'pages:index' %}">Home</a>
+                                </li>
+                                <li>Privacy Policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact -->
+    <div class="contact">
+        <div class="container py-5">
+            <h4 class="text-success mb-4">Privacy Policy</h4>
+            <p class="text-muted">
+                <strong>Effective:</strong> November 04, 2025
+            </p>
+            <p>
+                Your privacy matters. This policy explains how <strong>Tutor5**</strong> collects, uses, and protects your data.
+            </p>
+            <h5>1. Data We Collect</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Type</th>
+                    <th>Examples</th>
+                </tr>
+                <tr>
+                    <td>Personal</td>
+                    <td>Name, email, phone, school, parent name</td>
+                </tr>
+                <tr>
+                    <td>Academic</td>
+                    <td>Subjects, grades, progress, quiz scores</td>
+                </tr>
+                <tr>
+                    <td>Technical</td>
+                    <td>IP, browser, device, login times</td>
+                </tr>
+                <tr>
+                    <td>Usage</td>
+                    <td>Courses viewed, time spent, tutor ratings</td>
+                </tr>
+            </table>
+            <h5>2. How We Use Data</h5>
+            <ul>
+                <li>Match you with the best tutor</li>
+                <li>Send progress reports to parents</li>
+                <li>Improve platform with analytics</li>
+                <li>Send exam tips and reminders</li>
+            </ul>
+            <h5>3. Data Sharing</h5>
+            <p>
+                <strong>We do NOT sell your data.</strong> Shared only with:
+            </p>
+            <ul>
+                <li>
+                    <strong>Tutors:</strong> Name, subject, session time
+                </li>
+                <li>
+                    <strong>Parents:</strong> Child’s progress (if linked)
+                </li>
+                <li>
+                    <strong>Payment Partners:</strong> Encrypted card info
+                </li>
+                <li>
+                    <strong>Legal:</strong> If required by law
+                </li>
+            </ul>
+            <h5>4. Cookies & Tracking</h5>
+            <p>We use cookies for login, preferences, and analytics. Disable in browser, but some features may stop.</p>
+            <h5>5. Your Rights</h5>
+            <ul>
+                <li>View, download, or delete your data</li>
+                <li>Opt out of emails anytime</li>
+                <li>Request data portability</li>
+            </ul>
+            <p>
+                Email: <a href="mailto:privacy@tutor5star.com">privacy@tutor5star.com</a>
+            </p>
+            <h5>6. Children's Privacy (COPPA)</h5>
+            <p>
+                Users under 13 require <strong>verified parental consent</strong>. We delete unverified accounts.
+            </p>
+            <h5>7. Data Security</h5>
+            <p>SSL encryption · Regular audits · Limited staff access</p>
+            <hr>
+            <p class="text-muted small">Tutor5** – Where Privacy Meets Progress</p>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src='https://www.google.com.hk/maps/@22.3117312,114.2259712,14z?hl=en&entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D'></script>
+    <script src="{% static 'plugins/marker_with_label/marker_with_label.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
+{% endblock script %}

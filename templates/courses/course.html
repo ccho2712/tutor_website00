@@ -271,7 +271,7 @@
                                         </div>
                                         <div class="teacher_title">
                                             <div class="teacher_name">
-                                                <a href="#">{{ course.tutor }}</a>
+                                                <a href="{% url 'tutors:tutor' course.tutor.id %}">{{ course.tutor }}</a>
                                             </div>
                                             {% if course.tutor.is_mvp %}<p class="badge bg-warning text-dark">🌟 MVP Tutor</p>{% endif %}
                                             <div class="teacher_position">{{ course.subject }}</div>
@@ -320,7 +320,7 @@
                                                 </div>
                                                 <div class="latest_content">
                                                     <div class="latest_title">
-                                                        <a href="course.html">{{ course.title }}</a>
+                                                        <a href="{% url 'courses:course' course.id %}">{{ course.title }}</a>
                                                     </div>
                                                     <div class="latest_price">${{ course.price }}</div>
                                                 </div>

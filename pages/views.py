@@ -29,3 +29,15 @@ def about(request):
 
 def contact(request):
     return render(request, 'pages/contact-us.html')
+
+
+def copyright(request):
+    return render(request, 'pages/copyright.html')
+
+
+def terms_of_use(request):
+    return render(request, 'pages/terms_of_use.html')
+
+
+def privacy(request):
+    return render(request, 'pages/privacy.html')

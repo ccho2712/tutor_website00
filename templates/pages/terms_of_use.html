@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    | Terms of Use
+{% endblock title %}
+{% block link %}
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+          rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/contact.css' %}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'styles/contact_responsive.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock link %}
+{% block content %}
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'pages:index' %}">Home</a>
+                                </li>
+                                <li>Terms of Use</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact -->
+    <div class="contact">
+        <div class="container py-5">
+            <h4 class="text-success mb-4">Disclaimer</h4>
+            <p class="text-muted">
+                <strong>Last Updated:</strong> November 04, 2025
+            </p>
+            <p>
+                <strong>Tutor5**</strong> is an online marketplace connecting students with independent tutors. We provide tools for learning — <strong>not guarantees of success</strong>.
+            </p>
+            <h5>No Guarantees</h5>
+            <ul>
+                <li>
+                    We do <strong>not guarantee</strong> grades, exam results, or admissions.
+                </li>
+                <li>Tutor quality varies. Reviews are user opinions.</li>
+                <li>Success depends on student effort and compatibility.</li>
+            </ul>
+            <h5>Tutor Independence</h5>
+            <p>
+                Tutors are <strong>independent contractors</strong>. We do not:
+            </p>
+            <ul>
+                <li>Control teaching methods</li>
+                <li>Verify every claim in tutor profiles</li>
+                <li>Accept liability for tutor conduct</li>
+            </ul>
+            <h5>Platform Reliability</h5>
+            <p>We aim for 99.9% uptime but cannot guarantee:</p>
+            <ul>
+                <li>No downtime during maintenance</li>
+                <li>Zero technical glitches</li>
+            </ul>
+            <h5>Third-Party Links</h5>
+            <p>Links to external sites (YouTube, Khan Academy, etc.) are not endorsed. Use at your own risk.</p>
+            <h5>Limitation of Liability</h5>
+            <p>
+                Tutor5** is <strong>not liable</strong> for:
+            </p>
+            <ul>
+                <li>Loss of study time</li>
+                <li>Emotional distress</li>
+                <li>Indirect damages</li>
+            </ul>
+            <hr>
+            <p class="text-muted small">
+                Use Tutor5** responsibly. Your education is in <em>your</em> hands.
+            </p>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src='https://www.google.com.hk/maps/@22.3117312,114.2259712,14z?hl=en&entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D'></script>
+    <script src="{% static 'plugins/marker_with_label/marker_with_label.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
+{% endblock script %}
